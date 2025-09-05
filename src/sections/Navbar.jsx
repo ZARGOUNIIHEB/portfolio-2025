@@ -19,7 +19,7 @@ const Navbar = () => {
   // State for menu open/close and burger visibility
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
-  const [navBg, setNavBg] = useState("bg-mylightblue"); // default color
+  const [navBg, setNavBg] = useState("bg-myblue"); // default color
 
   // GSAP setup for menu and burger icon animations
   useGSAP(() => {
@@ -89,9 +89,11 @@ const Navbar = () => {
       setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
 
       // Change navbar background based on scroll position
-      if (currentScrollY < 200) {
-        setNavBg("bg-myblue-myskin-multigrad"); // top of page
-      } else if (currentScrollY < 600) {
+      if (currentScrollY < 600) {
+        //  setNavBg("bg-myblue-myskin-multigrad"); // top of page
+        setNavBg("bg-myblue");
+
+      } else if (currentScrollY < 1200) {
         setNavBg("bg-mygold-mylightblue-multigrad"); // mid scroll
       } else {
         setNavBg("bg-myblue-myskin-multigrad"); // further down
@@ -148,7 +150,7 @@ const Navbar = () => {
           <div className="font-light">
             <p className="tracking-wider text-white/50">E-mail</p>
             <p className="text-xl tracking-widest lowercase text-pretty">
-              JohnDoe@gmail.com
+              iheb.zargouni.pr@gmail.com
             </p>
           </div>
           <div className="font-light">
@@ -158,7 +160,7 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="text-sm leading-loose tracking-widest uppercase hover:text-white transition-colors duration-300"
+                  className="text-sm leading-loose tracking-widest uppercase custom-cursor hover:text-white transition-colors duration-300"
                 >
                   {"{ "}
                   {social.name}

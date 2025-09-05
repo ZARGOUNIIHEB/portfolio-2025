@@ -64,14 +64,36 @@ const AnimatedHeaderSection = ({
               className={`flex flex-col gap-12 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
             >
               {titleParts.map((part, index) => (
-                <span key={index}>{part} </span>
+                part === "ZARGOUNI" ? (
+                  <span
+                    key={index}
+                    style={{
+                      color: '#cfa355',
+                      WebkitTextStroke: '2px rgba(255,255,255,0.5)',
+                      fontSize: 'inherit',
+                      fontWeight: 'bold',
+                      WebkitBackgroundClip: 'text',
+                      backgroundClip: 'text',
+                      textTransform: 'inherit',
+                      transition: 'all 0.3s ease',
+                      backdropFilter: 'blur(50px)',
+                      WebkitBackdropFilter: 'blur(10px)',
+                      padding: '10px'
+                    }}
+                    className="inline-block"
+                  >
+                    {part}
+                  </span>
+                ) : (
+                  <span key={index}>{part} </span>
+                )
               ))}
             </h1>
           </div>
         </div>
-      </div>
+      </div >
       {/* Divider and animated description text */}
-      <div className={`relative px-10 ${textColor}`}>
+      < div className={`relative px-10 ${textColor}`}>
         <div className="absolute inset-x-0 border-t-2" />
         <div className="py-12 sm:py-16 text-end">
           <AnimatedTextLines
@@ -79,8 +101,8 @@ const AnimatedHeaderSection = ({
             className={`font-light uppercase value-text-responsive ${textColor}`}
           />
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

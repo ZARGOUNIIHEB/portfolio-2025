@@ -130,7 +130,7 @@ const Marquee = ({
   useEffect(() => {
     const tl = horizontalLoop(itemsRef.current, {
       repeat: -1,
-      paddingRight: 120, // Increased for more space
+      paddingRight: 240, // Increased for more space
       reversed: reverse,
     });
 

@@ -94,3 +94,84 @@ If this helped you build or inspire your own site:
 Drop a comment on the video or open an issue with your idea!
 
 > 📩 Like, subscribe, and let me know what kind of project you want to build together!
+
+```
+portfolio-2025
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ assets
+│  │  ├─ audio
+│  │  │  └─ background.mp3
+│  │  ├─ backgrounds
+│  │  │  ├─ blanket.jpg
+│  │  │  ├─ curtains.jpg
+│  │  │  ├─ map.jpg
+│  │  │  ├─ poster.jpg
+│  │  │  └─ table.jpg
+│  │  └─ projects
+│  │     ├─ apple-tech-store.jpg
+│  │     ├─ electronics-store.jpg
+│  │     ├─ game-store.jpg
+│  │     ├─ home-decor-store.jpg
+│  │     ├─ mobile-accessories-store.jpg
+│  │     └─ plant-shop.jpg
+│  ├─ fonts
+│  │  └─ amiamie
+│  │     ├─ otf
+│  │     │  ├─ Amiamie-Black.otf
+│  │     │  ├─ Amiamie-BlackItalic.otf
+│  │     │  ├─ Amiamie-BlackItalicRound.otf
+│  │     │  ├─ Amiamie-BlackRound.otf
+│  │     │  ├─ Amiamie-Italic.otf
+│  │     │  ├─ Amiamie-ItalicRound.otf
+│  │     │  ├─ Amiamie-Light.otf
+│  │     │  ├─ Amiamie-LightItalic.otf
+│  │     │  ├─ Amiamie-Regular.otf
+│  │     │  └─ Amiamie-RegularRound.otf
+│  │     └─ ttf
+│  │        ├─ Amiamie-Black.ttf
+│  │        ├─ Amiamie-BlackItalic.ttf
+│  │        ├─ Amiamie-BlackItalicRound.ttf
+│  │        ├─ Amiamie-BlackRound.ttf
+│  │        ├─ Amiamie-Italic.ttf
+│  │        ├─ Amiamie-ItalicRound.ttf
+│  │        ├─ Amiamie-Light.ttf
+│  │        ├─ Amiamie-LightItalic.ttf
+│  │        ├─ Amiamie-Regular.ttf
+│  │        └─ Amiamie-RegularRound.ttf
+│  ├─ images
+│  │  ├─ cursor.png
+│  │  ├─ cursor_generated_48x48.png
+│  │  ├─ hand_cursor_48x48.png
+│  │  └─ man.png
+│  └─ models
+│     ├─ base.glb
+│     ├─ brain-model.glb
+│     └─ Planet.glb
+├─ README.md
+├─ src
+│  ├─ App.jsx
+│  ├─ components
+│  │  ├─ AnimatedHeaderSection.jsx
+│  │  ├─ AnimatedTextLines.jsx
+│  │  ├─ Brain.jsx
+│  │  └─ Marquee.jsx
+│  ├─ constants
+│  │  └─ index.js
+│  ├─ index.css
+│  ├─ main.jsx
+│  └─ sections
+│     ├─ About.jsx
+│     ├─ Contact.jsx
+│     ├─ ContactSummary.jsx
+│     ├─ Hero.jsx
+│     ├─ Navbar.jsx
+│     ├─ Services.jsx
+│     ├─ ServiceSummary.jsx
+│     └─ Works.jsx
+└─ vite.config.js
+
+```
