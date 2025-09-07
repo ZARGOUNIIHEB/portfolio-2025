@@ -11,17 +11,18 @@ const Navbar = () => {
   const contactRef = useRef(null);
   const topLineRef = useRef(null);
   const bottomLineRef = useRef(null);
+  const isOpenRef = useRef(false);
 
   // Animation timelines
   const tl = useRef(null);
   const iconTl = useRef(null);
 
   // State for menu open/close and burger visibility
+  // const [isOpen, setIsOpen] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
   const [navBg, setNavBg] = useState("bg-myblue-myskin-multigrad"); // default color
-  const [valueOne, setValueOne] = useState("bg-myblue-myskin-multigrad".slice(0, 9));
-  const [valueTwo, setValueTwo] = useState("bg-" + "bg-myblue-myskin-multigrad".slice(10, 16));
   const [btnColor, setBtnColor] = useState("bg-myskin");
 
   // GSAP setup for menu and burger icon animations
@@ -84,28 +85,33 @@ const Navbar = () => {
       );
   }, []);
 
-  const updateValuesFromBg = (bg) => {
+  const getValuesFromBg = (bg) => {
     switch (bg) {
       case "bg-mygold-mylightblue-multigrad":
-        setValueOne(bg.slice(0, 9));
-        setValueTwo("bg-" + bg.slice(10, 21));
-        break;
+        return {
+          valueOne: bg.slice(0, 9),
+          valueTwo: "bg-" + bg.slice(10, 21),
+        };
       case "bg-myblue-myskin-multigrad":
-        setValueOne(bg.slice(0, 9));
-        setValueTwo("bg-" + bg.slice(10, 16));
-        break;
+        return {
+          valueOne: bg.slice(0, 9),
+          valueTwo: "bg-" + bg.slice(10, 16),
+        };
       case "bg-mylightblue-myblue-multigrad":
-        setValueOne(bg.slice(0, 14));
-        setValueTwo("bg-" + bg.slice(15, 21));
-        break;
+        return {
+          valueOne: bg.slice(0, 14),
+          valueTwo: "bg-" + bg.slice(15, 21),
+        };
       case "bg-myblue-mygold-multigrad":
-        setValueOne(bg.slice(0, 9));
-        setValueTwo("bg-" + bg.slice(10, 16));
-        break;
+        return {
+          valueOne: bg.slice(0, 9),
+          valueTwo: "bg-" + bg.slice(10, 16),
+        };
       default:
-        console.log("No color provided.");
+        return { valueOne: "", valueTwo: "" };
     }
   };
+
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -113,82 +119,59 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
       setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
 
+      let newBg = "";
 
-      // Change navbar background based on scroll position
       if (currentScrollY < 600) {
-        //  setNavBg("bg-myblue-myskin-multigrad"); // top of page
-        const newBg = "bg-myblue-myskin-multigrad";
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-
-        // console.log(btnColor);
-
-      } else if (currentScrollY >= 600 && currentScrollY < 800) {
-        const newBg = "bg-myblue-myskin-multigrad";
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
-      } else if (currentScrollY >= 800 && currentScrollY < 1500) {
-        const newBg = "bg-myblue-myskin-multigrad"; //White space end
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
-      } else if (currentScrollY >= 1500 && currentScrollY < 3000) {
-        const newBg = "bg-mygold-mylightblue-multigrad";
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
-      } else if (currentScrollY >= 3000 && currentScrollY < 4500) {
-        const newBg = "bg-mygold-mylightblue-multigrad";
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
-      } else if (currentScrollY >= 4500 && currentScrollY < 5000) {
-        const newBg = "bg-mygold-mylightblue-multigrad";//Blue space end
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
-      } else if (currentScrollY >= 5000 && currentScrollY < 8000) {
-        const newBg = "bg-mylightblue-myblue-multigrad"; // Yellow space end
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
+        newBg = "bg-myblue-myskin-multigrad";
+      } else if (currentScrollY < 800) {
+        newBg = "bg-myblue-myskin-multigrad";
+      } else if (currentScrollY < 1500) {
+        newBg = "bg-myblue-myskin-multigrad";
+      } else if (currentScrollY < 3000) {
+        newBg = "bg-mygold-mylightblue-multigrad";
+      } else if (currentScrollY < 4500) {
+        newBg = "bg-mygold-mylightblue-multigrad";
+      } else if (currentScrollY < 5000) {
+        newBg = "bg-mygold-mylightblue-multigrad";
+      } else if (currentScrollY < 8000) {
+        newBg = "bg-mylightblue-myblue-multigrad";
       } else {
-        const newBg = "bg-myblue-mygold-multigrad"; // Perple space
-        setNavBg(newBg);
-        updateValuesFromBg(newBg);
-        if (isOpen) setBtnColor(valueTwo);
-        // console.log(btnColor);
+        newBg = "bg-myblue-mygold-multigrad";
       }
+
+      setNavBg(newBg);
+      const { valueOne, valueTwo } = getValuesFromBg(newBg);
+      setBtnColor(isOpenRef.current ? valueTwo : valueOne);
+      // console.log(`valueOne : ${valueOne}`);
+      // console.log(`valueTwo : ${valueTwo}`);
 
       lastScrollY = currentScrollY;
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Toggle menu open/close and animate accordingly
   const toggleMenu = () => {
+    const { valueOne, valueTwo } = getValuesFromBg(navBg);
 
-
-    if (isOpen) {
+    if (isOpenRef.current) {
       tl.current.reverse();
       iconTl.current.reverse();
+      console.log(`valueOne : ${valueOne}`);
       setBtnColor(valueOne);
     } else {
       tl.current.play();
       iconTl.current.play();
+      console.log(`valueTwo : ${valueTwo}`);
       setBtnColor(valueTwo);
     }
-    setIsOpen(!isOpen);
+
+    isOpenRef.current = !isOpenRef.current;
+    setIsOpen(isOpenRef.current); // still used for rendering
   };
+
 
   return (
     <>
