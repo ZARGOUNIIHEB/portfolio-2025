@@ -148,12 +148,36 @@ body {
 }
 
 .bg-mygold-mylightblue-multigrad {
-  background-image: linear-gradient(to left,
+  background-image: linear-gradient(to bottom,
       var(--color-mygold) 0%,
       var(--color-mylightblue) 40%,
       var(--color-mylightblue) 60%,
       var(--color-mygold) 100%);
 }
+
+.bg-mylightblue-myblue-multigrad {
+  background-image: linear-gradient(to bottom,
+      var(--color-mylightblue) 0%,
+      var(--color-myblue) 40%,
+      var(--color-myblue) 60%,
+      var(--color-mylightblue) 100%);
+}
+
+.bg-myblue-mygold-multigrad {
+  background-image: linear-gradient(to bottom,
+      var(--color-myblue) 0%,
+      var(--color-mygold) 40%,
+      var(--color-mygold) 60%,
+      var(--color-myblue) 100%);
+}
+
+/* .bg-mygold-mylightblue-multigrad {
+  background-image: linear-gradient(to left,
+      var(--color-mygold) 0%,
+      var(--color-mylightblue) 40%,
+      var(--color-mylightblue) 60%,
+      var(--color-mygold) 100%);
+} */
 
 @utility clip-path {
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);

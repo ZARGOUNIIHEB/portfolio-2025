@@ -19,7 +19,10 @@ const Navbar = () => {
   // State for menu open/close and burger visibility
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
-  const [navBg, setNavBg] = useState("bg-myblue"); // default color
+  const [navBg, setNavBg] = useState("bg-myblue-myskin-multigrad"); // default color
+  const [valueOne, setValueOne] = useState("bg-myblue-myskin-multigrad".slice(0, 9));
+  const [valueTwo, setValueTwo] = useState("bg-" + "bg-myblue-myskin-multigrad".slice(10, 16));
+  const [btnColor, setBtnColor] = useState("bg-myskin");
 
   // GSAP setup for menu and burger icon animations
   useGSAP(() => {
@@ -80,23 +83,89 @@ const Navbar = () => {
         "<"
       );
   }, []);
-  console.log(window.scrollY);
-  // Show/hide burger icon based on scroll direction
+
+  const updateValuesFromBg = (bg) => {
+    switch (bg) {
+      case "bg-mygold-mylightblue-multigrad":
+        setValueOne(bg.slice(0, 9));
+        setValueTwo("bg-" + bg.slice(10, 21));
+        break;
+      case "bg-myblue-myskin-multigrad":
+        setValueOne(bg.slice(0, 9));
+        setValueTwo("bg-" + bg.slice(10, 16));
+        break;
+      case "bg-mylightblue-myblue-multigrad":
+        setValueOne(bg.slice(0, 14));
+        setValueTwo("bg-" + bg.slice(15, 21));
+        break;
+      case "bg-myblue-mygold-multigrad":
+        setValueOne(bg.slice(0, 9));
+        setValueTwo("bg-" + bg.slice(10, 16));
+        break;
+      default:
+        console.log("No color provided.");
+    }
+  };
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
 
+
       // Change navbar background based on scroll position
       if (currentScrollY < 600) {
         //  setNavBg("bg-myblue-myskin-multigrad"); // top of page
-        setNavBg("bg-myblue");
+        const newBg = "bg-myblue-myskin-multigrad";
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
 
-      } else if (currentScrollY < 1200) {
-        setNavBg("bg-mygold-mylightblue-multigrad"); // mid scroll
+        // console.log(btnColor);
+
+      } else if (currentScrollY >= 600 && currentScrollY < 800) {
+        const newBg = "bg-myblue-myskin-multigrad";
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
+      } else if (currentScrollY >= 800 && currentScrollY < 1500) {
+        const newBg = "bg-myblue-myskin-multigrad"; //White space end
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
+      } else if (currentScrollY >= 1500 && currentScrollY < 3000) {
+        const newBg = "bg-mygold-mylightblue-multigrad";
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
+      } else if (currentScrollY >= 3000 && currentScrollY < 4500) {
+        const newBg = "bg-mygold-mylightblue-multigrad";
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
+      } else if (currentScrollY >= 4500 && currentScrollY < 5000) {
+        const newBg = "bg-mygold-mylightblue-multigrad";//Blue space end
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
+      } else if (currentScrollY >= 5000 && currentScrollY < 8000) {
+        const newBg = "bg-mylightblue-myblue-multigrad"; // Yellow space end
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
       } else {
-        setNavBg("bg-myblue-myskin-multigrad"); // further down
+        const newBg = "bg-myblue-mygold-multigrad"; // Perple space
+        setNavBg(newBg);
+        updateValuesFromBg(newBg);
+        if (isOpen) setBtnColor(valueTwo);
+        // console.log(btnColor);
       }
 
       lastScrollY = currentScrollY;
@@ -107,12 +176,16 @@ const Navbar = () => {
 
   // Toggle menu open/close and animate accordingly
   const toggleMenu = () => {
+
+
     if (isOpen) {
       tl.current.reverse();
       iconTl.current.reverse();
+      setBtnColor(valueOne);
     } else {
       tl.current.play();
       iconTl.current.play();
+      setBtnColor(valueTwo);
     }
     setIsOpen(!isOpen);
   };
@@ -173,7 +246,7 @@ const Navbar = () => {
       </nav>
       {/* Burger menu button */}
       <div
-        className="fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 bg-gold rounded-full custom-cursor w-14 h-14 md:w-20 md:h-20 top-4 right-10"
+        className={`fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 ${btnColor} rounded-full custom-cursor w-14 h-14 md:w-20 md:h-20 top-4 right-10`}
         onClick={toggleMenu}
         style={
           showBurger
@@ -191,7 +264,7 @@ const Navbar = () => {
           ref={bottomLineRef}
           className="block w-8 h-0.5 bg-white rounded-full origin-center"
         ></span>
-      </div>
+      </div >
     </>
   );
 };

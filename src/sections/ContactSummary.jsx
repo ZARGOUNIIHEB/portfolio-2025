@@ -9,11 +9,11 @@ const ContactSummary = () => {
 
   // Items for the first marquee
   const items = [
-    "Innovation",
-    "Precision",
-    "Trust",
-    "Collaboration",
-    "Excellence",
+    "logos:docker",
+    "logos:kubernetes",
+    "logos:react",
+    "logos:nodejs",
+    "logos:python",
   ];
   // Items for the second marquee (repeated "contact us")
   const items2 = [

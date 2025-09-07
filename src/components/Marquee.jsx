@@ -5,16 +5,16 @@ import { useEffect, useRef } from "react";
 gsap.registerPlugin(Observer); // Register Observer plugin
 
 /**
- * Marquee component for horizontally scrolling text with icons.
- * @param {Array} items - Array of strings to display in the marquee.
+ * Marquee component for horizontally scrolling items (text or icons).
+ * @param {Array} items - Array of strings (text or icon names) to display in the marquee.
  * @param {string} className - Additional Tailwind classes for styling.
- * @param {string} icon - Iconify icon name.
+ * @param {string} icon - Iconify icon name for text items.
  * @param {string} iconClassName - Classes for the icon.
  * @param {boolean} reverse - If true, marquee scrolls in reverse direction.
  */
 const Marquee = ({
   items,
-  className = "text-white bg-mylightblue",
+  className = "text-white bg-myblue",
   icon = "mdi:star-four-points",
   iconClassName = "",
   reverse = false,
@@ -159,13 +159,17 @@ const Marquee = ({
       className={`overflow-hidden w-full h-20 md:h-[100px] flex items-center marquee-text-responsive font-light uppercase whitespace-nowrap ${className}`}
     >
       <div className="flex">
-        {items.map((text, index) => (
+        {items.map((item, index) => (
           <span
             key={index}
             ref={(el) => (itemsRef.current[index] = el)}
             className="flex items-center px-32 gap-x-64"
           >
-            {text} <Icon icon={icon} className={iconClassName} />
+            {typeof item === 'string' && item.includes(':') ? (
+              <Icon icon={item} className={iconClassName} />
+            ) : (
+              <>{item} <Icon icon={icon} className={iconClassName} /></>
+            )}
           </span>
         ))}
       </div>
