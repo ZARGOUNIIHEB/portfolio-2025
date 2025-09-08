@@ -88,25 +88,13 @@ const Navbar = () => {
   const getValuesFromBg = (bg) => {
     switch (bg) {
       case "bg-mygold-mylightblue-multigrad":
-        return {
-          valueOne: bg.slice(0, 9),
-          valueTwo: "bg-" + bg.slice(10, 21),
-        };
+        return { valueOne: "bg-mygold", valueTwo: "bg-mylightblue" };
       case "bg-myblue-myskin-multigrad":
-        return {
-          valueOne: bg.slice(0, 9),
-          valueTwo: "bg-" + bg.slice(10, 16),
-        };
+        return { valueOne: "bg-myblue", valueTwo: "bg-myskin" };
       case "bg-mylightblue-myblue-multigrad":
-        return {
-          valueOne: bg.slice(0, 14),
-          valueTwo: "bg-" + bg.slice(15, 21),
-        };
+        return { valueOne: "bg-mylightblue", valueTwo: "bg-myblue" };
       case "bg-myblue-mygold-multigrad":
-        return {
-          valueOne: bg.slice(0, 9),
-          valueTwo: "bg-" + bg.slice(10, 16),
-        };
+        return { valueOne: "bg-myblue", valueTwo: "bg-mygold" };
       default:
         return { valueOne: "", valueTwo: "" };
     }
@@ -141,9 +129,11 @@ const Navbar = () => {
 
       setNavBg(newBg);
       const { valueOne, valueTwo } = getValuesFromBg(newBg);
+      console.log(`Value One : ${valueOne}`);
+      console.log(`Value Two : ${valueTwo}`);
+
       setBtnColor(isOpenRef.current ? valueTwo : valueOne);
-      // console.log(`valueOne : ${valueOne}`);
-      // console.log(`valueTwo : ${valueTwo}`);
+
 
       lastScrollY = currentScrollY;
     };
@@ -159,12 +149,10 @@ const Navbar = () => {
     if (isOpenRef.current) {
       tl.current.reverse();
       iconTl.current.reverse();
-      console.log(`valueOne : ${valueOne}`);
       setBtnColor(valueOne);
     } else {
       tl.current.play();
       iconTl.current.play();
-      console.log(`valueTwo : ${valueTwo}`);
       setBtnColor(valueTwo);
     }
 
