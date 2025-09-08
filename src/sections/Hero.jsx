@@ -10,15 +10,14 @@ const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 853 });
 
   // Hero section description text
-  const text = `I help growing brands and startups gain an
-unfair advantage through premium
-results driven webs/apps`;
+  const text = `I design and build scalable web & AI-powered applications,
+   with CI/CD pipelines and cloud-ready architecture`;
 
   return (
     <section id="home" className="flex flex-col justify-end min-h-screen">
       {/* Animated header for hero section */}
       <AnimatedHeaderSection
-        subTitle={"200 Everything went smoothly!"}
+        subTitle={"Full-Stack Developer | DevOps Enthusiast | AI Integrator"}
         title={"Iheb ZARGOUNI"}
         text={text}
         textColor={"text-black"}
